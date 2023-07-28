@@ -1,6 +1,6 @@
 import { initialCVDataI } from "../../../types/initialCVData";
 
-import { tw } from "../CvPreview";
+import { tw } from "../style/tailwind_react_pdf";
 import { Text, View, Link } from "@react-pdf/renderer";
 
 import SectionView from "./elements/SectionView";
@@ -16,7 +16,9 @@ const LinkForm = ({
 }) => {
   return (
     <View style={tw("mb-3")}>
-      <Text style={tw("uppercase")}>{detail_title.split("_").join(" ")}</Text>
+      <Text style={tw("uppercase text-xs font-robotobold mb-[0.2rem]")}>
+        {detail_title.split("_").join(" ")}
+      </Text>
       <Text style={tw("text-xs")}>
         <Link style={tw("text-black no-underline")} src={`https://${value}`}>
           {value}
@@ -27,7 +29,6 @@ const LinkForm = ({
 };
 
 const DetailsForm = ({ data }: { data: initialCVDataI["details"] }) => {
-  console.log(Object.entries(data));
   return (
     <SectionView>
       <SectionTitle>Details</SectionTitle>
