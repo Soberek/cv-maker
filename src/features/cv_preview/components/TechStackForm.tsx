@@ -1,5 +1,5 @@
-import { tw } from "../CvPreview";
 import { Text, View } from "@react-pdf/renderer";
+import { tw } from "../style/tailwind_react_pdf";
 
 import SectionView from "./elements/SectionView";
 import SectionTitle from "./elements/SectionTitle";
@@ -14,12 +14,13 @@ const Skill = ({ skill_name }: { skill_name: string }) => {
   );
 };
 
-const TechStackForm = ({ data }: { data: initialCVDataI["skills"] }) => {
+const TechStackForm = ({ tech_stack_data }: { tech_stack_data: initialCVDataI["tech_stack"] }) => {
+  console.log(tech_stack_data);
   return (
     <SectionView>
       <SectionTitle>Tech stack</SectionTitle>
       <SectionContent>
-        {data.map((skill, index) => (
+        {tech_stack_data.map((skill, index) => (
           <Skill key={index} skill_name={skill} />
         ))}
       </SectionContent>
