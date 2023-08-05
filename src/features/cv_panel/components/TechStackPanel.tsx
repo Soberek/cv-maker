@@ -32,20 +32,12 @@ const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProp
       ))}
 
       <div className="[&>button:not(:first-child)]:ml-2">
-        <button
-          type="button"
-          onClick={() => append({ skill_name: "" })}
-          className="border-2 border-cyan-500 px-2 py-2 text-cyan-500"
-        >
+        <Button type="button" onClick={() => append({ skill_name: "" })}>
           Add skill
-        </button>
-        <button
-          type="button"
-          onClick={() => remove(fields.length - 1)}
-          className="border-2 border-cyan-500 px-2 py-2 text-cyan-500"
-        >
+        </Button>
+        <Button type="button" onClick={() => remove(fields.length - 1)}>
           Remove skill
-        </button>
+        </Button>
       </div>
     </>
   );
