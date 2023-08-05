@@ -1,26 +1,26 @@
-import { useState } from "react";
-import { PersonalInfoI, SkillI, initialCVDataI } from "../../types/initialCVData";
+import { CvData } from "../../../types/initialCVData";
 
-import ProfilePanel from "./components/ProfilePanel";
-import TechStackPanel from "./components/TechStackPanel";
-import EducationPanel from "./components/EducationPanel";
-import ExperiencePanel from "./components/ExperiencePanel";
+import ProfilePanel from "./ProfilePanel";
+import TechStackPanel from "./TechStackPanel";
+import EducationPanel from "./EducationPanel";
+import ExperiencePanel from "./ExperiencePanel";
 import { useFieldArray, useForm } from "react-hook-form";
+import { InputsI } from "../types";
+import usePanel from "../hooks/usePanel";
 
 // type PanelT = keyof initialCVDataI;
 
-export interface InputsI extends PersonalInfoI {
-  skills: SkillI[];
-}
-
-const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
-  const [active_panel, setActivePanel] = useState<keyof initialCVDataI>("personal_info");
-
-  const default_tech_stack_inputs: initialCVDataI["skills"] = cv_data.skills.length
-    ? cv_data.skills.map((skill) => skill)
-    : [{ skill_name: "React" }];
-
-  // Todo: based on form data will construct new cv_data object and generate new cv preview
+export const Panel = ({ cv_data }: { cv_data: CvData }) => {
+  const EMPTY_SKILLS_DEFAULT_VALUE = [{ skill_name: "" }];
+  const EMPTY_EDUCATION_DEFAULT_VALUE = [
+    {
+      school_name: "",
+      school_location: "",
+      major: "",
+      start_date: "",
+      end_date: "",
+    },
+  ];
 
   const { handleSubmit, register, control, getValues } = useForm<InputsI>({
     defaultValues: {
@@ -32,8 +32,9 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
       github: cv_data.personal_info.github,
       phone: cv_data.personal_info.phone,
       // skills
-      skills: default_tech_stack_inputs,
+      skills: cv_data.skills.length ? cv_data.skills : EMPTY_SKILLS_DEFAULT_VALUE,
       // education
+      educations: cv_data.educations.length ? cv_data.educations : EMPTY_EDUCATION_DEFAULT_VALUE,
       // experience
       // languages
       // certificates
@@ -43,17 +44,24 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
   const {
     fields: tech_stack_fields,
     append: techStackAppend,
-    remove,
+    remove: techStackRemove,
   } = useFieldArray({
     control,
     name: "skills",
   });
 
-  const handlePanelChange = (panel: keyof initialCVDataI) => {
-    setActivePanel(panel);
-  };
+  const {
+    fields: education_fields,
+    append: educationAppend,
+    remove: educationRemove,
+  } = useFieldArray({
+    control,
+    name: "educations",
+  });
 
-  const panels: { key: keyof initialCVDataI; component: JSX.Element }[] = [
+  const { active_panel, handlePanelChange } = usePanel("personal_info");
+
+  const panels: { key: keyof CvData; component: JSX.Element }[] = [
     {
       key: "personal_info",
       component: <ProfilePanel register={register} />,
@@ -61,20 +69,32 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
     {
       key: "skills",
       component: (
-        <TechStackPanel register={register} fields={tech_stack_fields} append={techStackAppend} remove={remove} />
+        <TechStackPanel
+          register={register}
+          fields={tech_stack_fields}
+          append={techStackAppend}
+          remove={techStackRemove}
+        />
       ),
     },
     {
-      key: "education",
-      component: <EducationPanel control={control} />,
+      key: "educations",
+      component: (
+        <EducationPanel
+          register={register}
+          fields={education_fields}
+          append={educationAppend}
+          remove={educationRemove}
+        />
+      ),
     },
     {
       key: "work_experience",
-      component: <ExperiencePanel control={control} />,
+      component: <ExperiencePanel />,
     },
   ];
 
-  const panel_to_display = panels.find((panel) => panel.key === active_panel)?.component;
+  const panel_to_display = panels.find((panel) => panel.key === active_panel)?.component ?? <div>Panel not found</div>;
 
   return (
     <div className="flex h-screen py-6 text-white">
@@ -102,8 +122,6 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
 
               const values = getValues();
 
-              console.log(values);
-
               const new_cv_data = {
                 personal_info: {
                   name: values.name,
@@ -117,8 +135,6 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
                   github: values.github,
                   phone: values.phone,
                 },
-                // !fix:
-                // tech_stack: [values.skills.map((skills) => skills.skill)],
               };
 
               console.log(new_cv_data);
@@ -131,12 +147,10 @@ const CvPanel = ({ cv_data }: { cv_data: initialCVDataI }) => {
       </div>
 
       {/* Section details */}
-      <div className="mr-2 flex-1 p-6 text-sm">
+      <div className="mr-2 flex-1 overflow-y-scroll p-6 text-sm">
         {/* One big Form */}
-        <form className="[&>*]:mb-2">{panel_to_display}</form>
+        <form className=" [&>*]:mb-2">{panel_to_display}</form>
       </div>
     </div>
   );
 };
-
-export default CvPanel;
