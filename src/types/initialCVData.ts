@@ -15,7 +15,7 @@ export interface ProjectI {
   description: string[];
 }
 
-interface SkillI {
+export interface SkillI {
   skill_name: string;
 }
 
@@ -39,11 +39,11 @@ export interface WorkExperienceI {
   endDate: string;
 }
 
-export interface initialCVDataI {
+export interface CvData {
   personal_info: PersonalInfoI;
   skills: SkillI[];
   work_experience?: WorkExperienceI[];
-  education: EducationI[];
+  educations: EducationI[];
   languages: LanguageI[];
   projects: ProjectI[];
 }

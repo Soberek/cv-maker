@@ -1,15 +1,21 @@
-import CvPreview from "./components/Form/CvPreview";
-// import CvPanel from "./components/Panel/CvPanel";
+import { Preview } from "./features/cv_preview";
+import { Panel } from "./features/cv_panel";
+import { useState } from "react";
+import { initialCVData } from "./data/initialCVData";
 
 function App() {
-  return (
-    <div>
-      {/* <div className="w-1/2 flex-shrink">
-        <CvPanel />
-      </div> */}
+  const [data, setData] = useState(initialCVData);
 
-      <div className="">
-        <CvPreview />
+  // get here data from panel and send them to cv_preview component
+
+  return (
+    <div className="bg-gray-800 md:flex">
+      <div className="md:w-1/2">
+        <Panel cv_data={data} />
+      </div>
+
+      <div className="md:w-1/2">
+        <Preview cv_data={data} />
       </div>
     </div>
   );

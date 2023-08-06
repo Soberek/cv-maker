@@ -4,7 +4,7 @@ import { tw } from "../style/tailwind_react_pdf";
 import SectionView from "./elements/SectionView";
 import SectionTitle from "./elements/SectionTitle";
 import SectionContent from "./elements/SectionContent";
-import { initialCVDataI } from "../../../types/initialCVData";
+import { CvData } from "../../../types/initialCVData";
 
 const Skill = ({ skill_name }: { skill_name: string }) => {
   return (
@@ -14,14 +14,13 @@ const Skill = ({ skill_name }: { skill_name: string }) => {
   );
 };
 
-const TechStackForm = ({ tech_stack_data }: { tech_stack_data: initialCVDataI["tech_stack"] }) => {
-  console.log(tech_stack_data);
+const TechStackForm = ({ skills_data }: { skills_data: CvData["skills"] }) => {
   return (
     <SectionView>
       <SectionTitle>Tech stack</SectionTitle>
       <SectionContent>
-        {tech_stack_data.map((skill, index) => (
-          <Skill key={index} skill_name={skill} />
+        {skills_data.map((skill, index) => (
+          <Skill key={index} skill_name={skill.skill_name} />
         ))}
       </SectionContent>
     </SectionView>

@@ -1,18 +1,19 @@
 import { FieldArrayWithId, UseFieldArrayAppend, UseFieldArrayRemove, UseFormRegister } from "react-hook-form";
 
-import { InputsI } from "../CvPanel";
+import { InputsI } from "../types";
+
 import PanelTitle from "../elements/PanelTitle";
-
 import Input from "../elements/Input";
+import Button from "../elements/Button";
 
-interface TechStackPanelPropsI {
+interface TechStackPanelProps {
   register: UseFormRegister<InputsI>;
   fields: FieldArrayWithId<InputsI, "skills", "id">[];
   append: UseFieldArrayAppend<InputsI, "skills">;
   remove: UseFieldArrayRemove;
 }
 
-const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelPropsI) => {
+const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProps) => {
   return (
     <>
       <PanelTitle>Your skills</PanelTitle>

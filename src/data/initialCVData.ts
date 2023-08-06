@@ -1,6 +1,6 @@
-import { initialCVDataI } from "../types/initialCVData";
+import { CvData } from "../types/initialCVData";
 
-export const initialCVData: initialCVDataI = {
+export const initialCVData: CvData = {
   personal_info: {
     name: "Krzysztof Palpuchowski",
     job_title: "Front-end Developer",
@@ -33,19 +33,34 @@ export const initialCVData: initialCVDataI = {
       endDate: "",
     },
   ],
-  education: [
+  educations: [
     {
-      school_name: "",
-      school_location: "",
-      major: "",
-      start_date: "",
-      end_date: "",
+      school_name: "Akademia im. Jakuba z Paradyża",
+      school_location: "Gorzów Wielkopolski",
+      major: "BSc. of Computer Science",
+      start_date: "Sep 2018",
+      end_date: "Mar 2023",
+    },
+    {
+      school_name: "Technikum Nr. 1 im. S. Dariusa i S. Girenasa",
+      school_location: "Myślibórz",
+      major: "IT Technician",
+      start_date: "Oct 2014",
+      end_date: "Jun 2018",
     },
   ],
   projects: [
     {
       name: "CVMaker",
-      tools: ["React", "Redux", "React Query", "MaterialUI", "Figma", "Git"],
+      tools: [
+        "Javascript/Typescript",
+        "React",
+        "Web Storage API",
+        "react-hook-form",
+        "react-pdf/renderer",
+        "Figma",
+        "Git",
+      ],
       source: "https://github.com/Soberek/cv-maker",
       demo: "https://netlify.com/soberek/project1",
       description: [

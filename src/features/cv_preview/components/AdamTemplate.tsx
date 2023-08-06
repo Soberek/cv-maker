@@ -9,9 +9,9 @@ import ProfileForm from "./ProfileForm";
 
 import { tw } from "../style/tailwind_react_pdf";
 import EducationForm from "./EducationForm";
-import { initialCVDataI } from "../../../types/initialCVData";
+import { CvData } from "../../../types/initialCVData";
 
-const AdamTemplate = ({ cv_data }: { cv_data: initialCVDataI }) => {
+const AdamTemplate = ({ cv_data }: { cv_data: CvData }) => {
   return (
     <Document title="CVMaker">
       <Page style={tw("relative mx-auto h-[297mm] w-[210mm] max-w-[100%] font-roboto")}>
@@ -34,9 +34,9 @@ const AdamTemplate = ({ cv_data }: { cv_data: initialCVDataI }) => {
               email={cv_data.personal_info.email}
               github={cv_data.personal_info.github}
             />
-            <TechStackForm tech_stack_data={cv_data.tech_stack} />
+            <TechStackForm skills_data={cv_data.skills} />
             <LanguagesForm />
-            <EducationForm education_data={cv_data.education} />
+            <EducationForm education_data={cv_data.educations} />
           </View>
 
           {/* Right */}

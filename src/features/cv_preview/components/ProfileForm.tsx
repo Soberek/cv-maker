@@ -1,13 +1,13 @@
-import { initialCVDataI } from "../../../types/initialCVData";
+import { CvData } from "../../../types/initialCVData";
 import SectionContent from "./elements/SectionContent";
 import SectionTitle from "./elements/SectionTitle";
 import SectionView from "./elements/SectionView";
 
 import { Text } from "@react-pdf/renderer";
 
-type ProfileFormPropsI = Pick<initialCVDataI["personal_info"], "description">;
+type ProfileFormProps = Pick<CvData["personal_info"], "description">;
 
-const ProfileForm = ({ description }: ProfileFormPropsI) => {
+const ProfileForm = ({ description }: ProfileFormProps) => {
   return (
     <SectionView>
       <SectionTitle>Profile</SectionTitle>

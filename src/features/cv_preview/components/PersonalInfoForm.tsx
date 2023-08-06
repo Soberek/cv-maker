@@ -1,11 +1,11 @@
-import type { initialCVDataI } from "../../../types/initialCVData";
+import type { CvData } from "../../../types/initialCVData";
 
 import { Text, View } from "@react-pdf/renderer";
 import { tw } from "../style/tailwind_react_pdf";
 
-type PersonalInfoPropsI = Pick<initialCVDataI["personal_info"], "name" | "job_title">;
+type PersonalInfoProps = Pick<CvData["personal_info"], "name" | "job_title">;
 
-const PersonalInfoForm = ({ name, job_title }: PersonalInfoPropsI) => {
+const PersonalInfoForm = ({ name, job_title }: PersonalInfoProps) => {
   return (
     <View style={tw("flex flex-col border-2 py-6 px-20 bg-white font-roboto")}>
       <View style={tw("mx-auto")}>

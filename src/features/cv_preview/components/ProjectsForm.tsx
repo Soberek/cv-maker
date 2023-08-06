@@ -4,30 +4,34 @@ import SectionContent from "./elements/SectionContent";
 
 import { Text, View } from "@react-pdf/renderer";
 
-import { initialCVDataI } from "../../../types/initialCVData";
+import { CvData } from "../../../types/initialCVData";
 import { tw } from "../style/tailwind_react_pdf";
 
-interface ProjectI {
+interface ProjectProps {
   project_name: string;
   demo: string;
   source: string;
   description: string[];
 }
 
-const Project = ({ project_name, source, demo, description }: ProjectI) => {
+const Project = ({ project_name, source, demo, description }: ProjectProps) => {
   return (
     <View style={tw("text-[0.75rem]")}>
       <Text style={tw("font-robotobold text-[0.90rem]")}>{project_name}</Text>
-      <Text>• Source: {source}</Text>
+      <Text>
+        {`\u2022`} Source: {source}
+      </Text>
       {description.map((item, index) => (
-        <Text key={index}>• {item}</Text>
+        <Text key={index}>
+          {`\u2022`} {item}
+        </Text>
       ))}
       <Text>• Live: {demo}</Text>
     </View>
   );
 };
 
-const ProjectsForm = ({ cv_data }: { cv_data: initialCVDataI["projects"] }) => {
+const ProjectsForm = ({ cv_data }: { cv_data: CvData["projects"] }) => {
   return (
     <SectionView>
       <SectionTitle>Projects</SectionTitle>

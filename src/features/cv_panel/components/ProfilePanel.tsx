@@ -2,13 +2,13 @@ import { UseFormRegister } from "react-hook-form";
 
 import Input from "../elements/Input";
 import Textarea from "../elements/Textarea";
-import { InputsI } from "../CvPanel";
+import { InputsI } from "../types";
 
-interface ProfilePanelPropsI {
+interface ProfilePanelProps {
   register: UseFormRegister<InputsI>;
 }
 
-const ProfilePanel = ({ register }: ProfilePanelPropsI) => {
+const ProfilePanel = ({ register }: ProfilePanelProps) => {
   return (
     <>
       <Input register={register} label_title="Name" name="name" />

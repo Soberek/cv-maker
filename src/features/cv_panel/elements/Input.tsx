@@ -1,14 +1,19 @@
 import { UseFormRegister } from "react-hook-form";
 
-import { InputsI } from "../CvPanel";
+import { InputsI } from "../types";
+import { EducationI, SkillI } from "../../../types/initialCVData";
 
-interface InputPropsI {
+type EducationNames = `educations.${number}.${keyof EducationI}`;
+type SkillsNames = `skills.${number}.${keyof SkillI}`;
+
+interface InputProps {
   label_title?: string;
-  name: keyof InputsI | `skills.${number}.skill_name`;
+  placeholder?: string;
+  name: keyof InputsI | SkillsNames | EducationNames;
   register: UseFormRegister<InputsI>;
 }
 
-const Input = ({ register, label_title, name }: InputPropsI) => {
+const Input = ({ register, label_title, name, placeholder }: InputProps) => {
   return (
     <div className="flex flex-col">
       {label_title && (
@@ -20,6 +25,7 @@ const Input = ({ register, label_title, name }: InputPropsI) => {
       <input
         className="mb-2 border-b-2 border-gray-600 bg-gray-800 pb-2 text-white outline-none focus:border-b-2 focus:border-cyan-500"
         {...register(name)}
+        placeholder={placeholder}
       />
     </div>
   );
