@@ -8,12 +8,14 @@ import { useFieldArray, useForm } from "react-hook-form";
 
 import { InputsI } from "../types";
 import usePanel from "../hooks/usePanel";
+import LanguagesPanel from "./LanguagesPanel";
 
 type PanelProps = { cv_data: CvData; handlePreviewGeneration: (data: CvData) => void };
 
 export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
   const DEFAULT_SKILLS_VALUE = [{ skill_name: "React", proficiency: "experienced" }];
   const DEFAULT_EDUCATIONS_VALUE = [{ school_name: "", school_location: "", major: "", start_date: "", end_date: "" }];
+  const DEFAULT_LANGUAGES_VALUE = [{ name: "", proficiency: "" }];
 
   const { handleSubmit, register, control, getValues } = useForm<InputsI>({
     defaultValues: {
@@ -30,6 +32,7 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
       educations: cv_data.educations ? cv_data.educations : DEFAULT_EDUCATIONS_VALUE,
       // experience
       // languages
+      languages: cv_data.languages ? cv_data.languages : DEFAULT_LANGUAGES_VALUE,
       // certificates
     },
   });
@@ -50,6 +53,15 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
   } = useFieldArray({
     control,
     name: "educations",
+  });
+
+  const {
+    fields: languages_fields,
+    append: languagesAppend,
+    remove: languagesRemove,
+  } = useFieldArray({
+    control,
+    name: "languages",
   });
 
   const { active_panel, handlePanelChange } = usePanel("personal_info");
@@ -83,7 +95,18 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
     },
     {
       key: "work_experience",
-      component: <ExperiencePanel />,
+      component: <WorkExperiencePanel />,
+    },
+    {
+      key: "languages",
+      component: (
+        <LanguagesPanel
+          register={register}
+          fields={languages_fields}
+          append={languagesAppend}
+          remove={languagesRemove}
+        />
+      ),
     },
   ];
 
@@ -140,7 +163,7 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
       </div>
 
       {/* Section details */}
-      <div className="mr-2 flex-1 p-6 text-sm">
+      <div className="mr-2 flex-1 overflow-y-auto p-6 text-sm">
         {/* One big Form */}
         <form className="[&>*]:mb-2">{panel_to_display}</form>
       </div>

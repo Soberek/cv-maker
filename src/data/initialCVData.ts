@@ -87,7 +87,7 @@ export const initialCVData: CvData = {
   languages: [
     {
       name: "Polish",
-      proficiency: "Native",
+      proficiency: "Native speaker",
     },
     {
       name: "English",
