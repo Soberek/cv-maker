@@ -16,7 +16,7 @@ type TechStackPanelProps = {
 const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProps) => {
   return (
     <>
-      <PanelTitle>Your skills</PanelTitle>
+      <PanelTitle>YOUR SKILLS</PanelTitle>
       {fields.map((field, index) => (
         <div key={field.id} className="flex items-center [&>div:first-child]:mr-2">
           <Input register={register} name={`skills.${index}.name`} placeholder="Skill name" />

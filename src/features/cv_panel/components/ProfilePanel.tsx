@@ -3,6 +3,7 @@ import { UseFormRegister } from "react-hook-form";
 import Input from "../elements/Input";
 import Textarea from "../elements/Textarea";
 import { InputsI } from "../types";
+import PanelTitle from "../elements/PanelTitle";
 
 interface ProfilePanelProps {
   register: UseFormRegister<InputsI>;
@@ -11,6 +12,7 @@ interface ProfilePanelProps {
 const ProfilePanel = ({ register }: ProfilePanelProps) => {
   return (
     <>
+      <PanelTitle>YOUR PERSONAL INFO</PanelTitle>
       <Input register={register} label_title="Name" name="name" />
       <Input register={register} label_title="Job title" name="job_title" />
       <Input register={register} label_title="Email" name="email" />
