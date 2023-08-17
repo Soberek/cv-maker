@@ -58,6 +58,8 @@ const DetailsForm = ({ phone, email, github }: PickedPersonalInfo) => {
       <SectionTitle>Details</SectionTitle>
       <SectionContent>
         {details.map((detail, key) => {
+          if (!detail.value) return null;
+
           return (
             <LinkForm
               key={key}

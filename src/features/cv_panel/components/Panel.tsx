@@ -9,21 +9,23 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { InputsI } from "../types";
 import usePanel from "../hooks/usePanel";
 
-export const Panel = ({ cv_data }: { cv_data: CvData }) => {
+type PanelProps = { cv_data: CvData; handlePreviewGeneration: (data: CvData) => void };
+
+export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
   const DEFAULT_SKILLS_VALUE = [{ skill_name: "React", proficiency: "experienced" }];
   const DEFAULT_EDUCATIONS_VALUE = [{ school_name: "", school_location: "", major: "", start_date: "", end_date: "" }];
 
   const { handleSubmit, register, control, getValues } = useForm<InputsI>({
     defaultValues: {
       // personal info
-      name: cv_data.personal_info.name,
-      job_title: cv_data.personal_info.job_title,
-      description: cv_data.personal_info.description,
-      email: cv_data.personal_info.email,
-      github: cv_data.personal_info.github,
-      phone: cv_data.personal_info.phone,
+      name: cv_data.personal_info ? cv_data.personal_info.name : "",
+      job_title: cv_data.personal_info ? cv_data.personal_info.job_title : "",
+      description: cv_data.personal_info ? cv_data.personal_info.description : "",
+      email: cv_data.personal_info ? cv_data.personal_info.email : "",
+      github: cv_data.personal_info ? cv_data.personal_info.github : "",
+      phone: cv_data.personal_info ? cv_data.personal_info.phone : "",
       // skills
-      skills: cv_data.skills.length ? cv_data.skills : DEFAULT_SKILLS_VALUE,
+      skills: cv_data.skills ? cv_data.skills : DEFAULT_SKILLS_VALUE,
       // education
       educations: cv_data.educations ? cv_data.educations : DEFAULT_EDUCATIONS_VALUE,
       // experience
@@ -113,23 +115,22 @@ export const Panel = ({ cv_data }: { cv_data: CvData }) => {
 
               const values = getValues();
 
-              const new_cv_data = {
+              const new_cv_data: CvData = {
                 personal_info: {
                   name: values.name,
                   job_title: values.job_title,
-                },
-                profile: {
                   description: values.description,
-                },
-                details: {
                   email: values.email,
                   github: values.github,
                   phone: values.phone,
                 },
-                tech_stack: [values.skills],
+                skills: values.skills || [],
+                educations: values.educations || [],
+                languages: values.languages || [],
+                projects: values.projects || [],
               };
 
-              console.log(new_cv_data);
+              handlePreviewGeneration(new_cv_data);
             }}
             className="my-4 rounded-full bg-cyan-500 px-4 py-2 text-white transition-all hover:bg-cyan-700"
           >
