@@ -12,12 +12,20 @@ interface ProjectProps {
   demo: string;
   source: string;
   description: string[];
+  tools: string[];
 }
 
-const Project = ({ project_name, source, demo, description }: ProjectProps) => {
+const Project = ({ project_name, source, demo, description, tools }: ProjectProps) => {
   return (
     <View style={tw("text-[0.75rem]")}>
-      <Text style={tw("font-robotobold text-[0.90rem]")}>{project_name}</Text>
+      <View style={tw("flex flex-row flex-wrap mb-1")}>
+        <Text style={tw("font-robotobold text-[0.90rem]")}>
+          {project_name} -
+          <Text style={tw("font-roboto text-[0.8rem]")}> {tools.map((tool) => tool.toLowerCase()).join(", ")}</Text>
+        </Text>
+        {/* <Text style={tw("text-[0.8rem]")}>{tools.join(", ")}</Text> */}
+      </View>
+
       <Text>
         {`\u2022`} Source: {source}
       </Text>
@@ -43,6 +51,7 @@ const ProjectsForm = ({ cv_data }: { cv_data: CvData["projects"] }) => {
             demo={project.demo}
             source={project.source}
             description={project.description}
+            tools={project.tools}
           />
         ))}
       </SectionContent>
