@@ -10,7 +10,7 @@ import { InputsI } from "../types";
 import usePanel from "../hooks/usePanel";
 
 export const Panel = ({ cv_data }: { cv_data: CvData }) => {
-  const DEFAULT_SKILLS_VALUE = [{ skill_name: "React" }];
+  const DEFAULT_SKILLS_VALUE = [{ skill_name: "React", proficiency: "experienced" }];
   const DEFAULT_EDUCATIONS_VALUE = [{ school_name: "", school_location: "", major: "", start_date: "", end_date: "" }];
 
   const { handleSubmit, register, control, getValues } = useForm<InputsI>({

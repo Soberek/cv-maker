@@ -6,20 +6,21 @@ import PanelTitle from "../elements/PanelTitle";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
 
-interface TechStackPanelProps {
+type TechStackPanelProps = {
   register: UseFormRegister<InputsI>;
   fields: FieldArrayWithId<InputsI, "skills", "id">[];
   append: UseFieldArrayAppend<InputsI, "skills">;
   remove: UseFieldArrayRemove;
-}
+};
 
 const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProps) => {
   return (
     <>
       <PanelTitle>Your skills</PanelTitle>
       {fields.map((field, index) => (
-        <div key={field.id} className="flex items-center">
-          <Input register={register} name={`skills.${index}.skill_name`} />
+        <div key={field.id} className="flex items-center [&>div:first-child]:mr-2">
+          <Input register={register} name={`skills.${index}.skill`} placeholder="Skill name" />
+          <Input register={register} name={`skills.${index}.proficiency`} placeholder="Proficiency" />
           <div className="flex w-1/4 items-start">
             <button
               type="button"
@@ -33,7 +34,7 @@ const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProp
       ))}
 
       <div className="[&>button:not(:first-child)]:ml-2">
-        <Button type="button" onClick={() => append({ skill_name: "" })}>
+        <Button type="button" onClick={() => append({ skill: "", proficiency: "" })}>
           Add skill
         </Button>
         <Button type="button" onClick={() => remove(fields.length - 1)}>

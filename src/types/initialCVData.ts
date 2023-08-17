@@ -16,7 +16,8 @@ export interface ProjectI {
 }
 
 export interface SkillI {
-  skill_name: string;
+  skill: string;
+  proficiency: string;
 }
 
 export interface LanguageI {
