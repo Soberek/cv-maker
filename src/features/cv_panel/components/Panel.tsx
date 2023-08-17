@@ -3,7 +3,7 @@ import { CvData } from "../../../types/initialCVData";
 import ProfilePanel from "./ProfilePanel";
 import TechStackPanel from "./TechStackPanel";
 import EducationPanel from "./EducationPanel";
-import ExperiencePanel from "./ExperiencePanel";
+import WorkExperiencePanel from "./WorkExperiencePanel";
 import { useFieldArray, useForm } from "react-hook-form";
 
 import { InputsI } from "../types";

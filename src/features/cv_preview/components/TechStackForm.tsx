@@ -24,7 +24,7 @@ const TechStackForm = ({ skills_data }: { skills_data: CvData["skills"] }) => {
       <SectionContent>
         <View style={tw("flex flex-row flex-wrap")}>
           {skills_data.map((skill, index) => (
-            <Skill key={index} skill_name={skill.skill} skill_proficiency={skill.proficiency} />
+            <Skill key={index} skill_name={skill.name} skill_proficiency={skill.proficiency} />
           ))}
         </View>
       </SectionContent>
