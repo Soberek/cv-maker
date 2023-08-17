@@ -1,10 +1,10 @@
 export interface PersonalInfoI {
-  name: string;
-  job_title: string;
-  description: string;
-  email: string;
-  github: string;
-  phone: string;
+  name: string | "";
+  job_title: string | "";
+  description: string | "";
+  email: string | "";
+  github: string | "";
+  phone: string | "";
 }
 
 export interface ProjectI {
@@ -16,7 +16,8 @@ export interface ProjectI {
 }
 
 export interface SkillI {
-  skill_name: string;
+  name: string;
+  proficiency: string;
 }
 
 export interface LanguageI {
@@ -41,9 +42,9 @@ export interface WorkExperienceI {
 
 export interface CvData {
   personal_info: PersonalInfoI;
-  skills: SkillI[];
-  work_experience?: WorkExperienceI[];
-  educations: EducationI[];
-  languages: LanguageI[];
-  projects: ProjectI[];
+  skills: SkillI[] | [];
+  work_experience?: WorkExperienceI[] | [];
+  educations: EducationI[] | [];
+  languages: LanguageI[] | [];
+  projects: ProjectI[] | [];
 }

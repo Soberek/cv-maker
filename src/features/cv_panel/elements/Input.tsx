@@ -1,15 +1,16 @@
 import { UseFormRegister } from "react-hook-form";
 
 import { InputsI } from "../types";
-import { EducationI, SkillI } from "../../../types/initialCVData";
+import { EducationI, LanguageI, SkillI } from "../../../types/initialCVData";
 
 type EducationNames = `educations.${number}.${keyof EducationI}`;
 type SkillsNames = `skills.${number}.${keyof SkillI}`;
+type LanguagesNames = `languages.${number}.${keyof LanguageI}`;
 
 interface InputProps {
   label_title?: string;
   placeholder?: string;
-  name: keyof InputsI | SkillsNames | EducationNames;
+  name: keyof InputsI | SkillsNames | EducationNames | LanguagesNames;
   register: UseFormRegister<InputsI>;
 }
 

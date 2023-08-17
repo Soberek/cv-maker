@@ -2,6 +2,7 @@ import { FieldArrayWithId, UseFieldArrayAppend, UseFieldArrayRemove, UseFormRegi
 import { InputsI } from "../types";
 import Input from "../elements/Input";
 import Button from "../elements/Button";
+import PanelTitle from "../elements/PanelTitle";
 
 interface EducationPanelProps {
   register: UseFormRegister<InputsI>;
@@ -13,6 +14,7 @@ interface EducationPanelProps {
 const EducationPanel = ({ fields, register, append, remove }: EducationPanelProps) => {
   return (
     <>
+      <PanelTitle>YOUR EDUCATIONAL BACKGROUND</PanelTitle>
       {fields.map((field, index) => (
         <div key={field.id} className="flex flex-col border-t-4 border-cyan-500 pt-4">
           <Input

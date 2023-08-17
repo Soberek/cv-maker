@@ -29,20 +29,23 @@ const AdamTemplate = ({ cv_data }: { cv_data: CvData }) => {
           {/* Left */}
           <View style={tw("w-4/12 px-6")}>
             {/* Details */}
-            <DetailsForm
-              phone={cv_data.personal_info.phone}
-              email={cv_data.personal_info.email}
-              github={cv_data.personal_info.github}
-            />
-            <TechStackForm skills_data={cv_data.skills} />
-            <LanguagesForm />
-            <EducationForm education_data={cv_data.educations} />
+            {cv_data.personal_info.phone || cv_data.personal_info.email || cv_data.personal_info.github ? (
+              <DetailsForm
+                phone={cv_data.personal_info.phone}
+                email={cv_data.personal_info.email}
+                github={cv_data.personal_info.github}
+              />
+            ) : null}
+
+            {cv_data.languages.length && <LanguagesForm languages_data={cv_data.languages} />}
+            {cv_data.educations.length && <EducationForm education_data={cv_data.educations} />}
           </View>
 
           {/* Right */}
           <View style={tw("flex-1 px-6")}>
-            <ProfileForm description={cv_data.personal_info.description} />
-            <ProjectsForm cv_data={cv_data.projects} />
+            {cv_data.personal_info.description && <ProfileForm description={cv_data.personal_info.description} />}
+            {cv_data.projects.length && <ProjectsForm cv_data={cv_data.projects} />}
+            {cv_data.skills.length && <TechStackForm skills_data={cv_data.skills} />}
           </View>
         </View>
       </Page>

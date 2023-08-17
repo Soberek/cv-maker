@@ -1,6 +1,6 @@
 // *Components
 
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import { PDFViewer } from "@react-pdf/renderer";
 
 import AdamTemplate from "./AdamTemplate";
 import { CvData } from "../../../types/initialCVData";
@@ -12,10 +12,6 @@ export const Preview = ({ cv_data }: { cv_data: CvData }) => {
       <PDFViewer width={"100%"} height={"100%"}>
         <AdamTemplate cv_data={cv_data} />
       </PDFViewer>
-
-      {/* <PDFDownloadLink document={<AdamTemplate />} fileName="yourCV.pdf">
-        {({ loading }) => (loading ? "Loading document..." : "Download now!")}
-      </PDFDownloadLink> */}
     </div>
   );
 };
