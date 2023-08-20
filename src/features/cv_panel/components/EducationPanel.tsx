@@ -4,12 +4,12 @@ import Input from "../elements/Input";
 import Button from "../elements/Button";
 import PanelTitle from "../elements/PanelTitle";
 
-interface EducationPanelProps {
+type EducationPanelProps = {
   register: UseFormRegister<InputsI>;
   fields: FieldArrayWithId<InputsI, "educations", "id">[];
   append: UseFieldArrayAppend<InputsI, "educations">;
   remove: UseFieldArrayRemove;
-}
+};
 
 const EducationPanel = ({ fields, register, append, remove }: EducationPanelProps) => {
   return (
@@ -18,32 +18,27 @@ const EducationPanel = ({ fields, register, append, remove }: EducationPanelProp
       {fields.map((field, index) => (
         <div key={field.id} className="flex flex-col border-t-4 border-cyan-500 pt-4">
           <Input
-            register={register}
-            name={`educations.${index}.school_name`}
             label_title="School name"
             placeholder="University of Oxford"
+            inputProps={{ ...register(`educations.${index}.school_name`) }}
           />
           <Input
-            register={register}
-            name={`educations.${index}.school_location`}
+            inputProps={{ ...register(`educations.${index}.school_location`) }}
             label_title="School location"
             placeholder="Oxford, England"
           />
           <Input
-            register={register}
-            name={`educations.${index}.major`}
+            inputProps={register(`educations.${index}.major`)}
             label_title="School location"
             placeholder="Oxford, England"
           />
           <Input
-            register={register}
-            name={`educations.${index}.start_date`}
+            inputProps={register(`educations.${index}.start_date`)}
             label_title="Start date"
             placeholder="Sep 2020"
           />
           <Input
-            register={register}
-            name={`educations.${index}.end_date`}
+            inputProps={register(`educations.${index}.end_date`)}
             label_title="Start date"
             placeholder="Jun 2024"
           />

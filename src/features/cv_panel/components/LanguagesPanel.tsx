@@ -18,14 +18,12 @@ const LanguagesPanel = ({ register, fields, append, remove }: LanguagesPanelProp
       {fields.map((field, index) => (
         <div key={field.id} className="flex flex-col border-t-4 border-cyan-500 pt-4">
           <Input
-            register={register}
-            name={`languages.${index}.name`}
+            inputProps={{ ...register(`languages.${index}.name`) }}
             placeholder="Polish"
             label_title="Language Name"
           />
           <Input
-            register={register}
-            name={`languages.${index}.proficiency`}
+            inputProps={{ ...register(`languages.${index}.proficiency`) }}
             placeholder="Native speaker"
             label_title="Language Proficiency"
           />
