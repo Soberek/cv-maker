@@ -18,17 +18,13 @@ const TechStackPanel = ({ register, fields, append, remove }: TechStackPanelProp
     <>
       <PanelTitle>YOUR SKILLS</PanelTitle>
       {fields.map((field, index) => (
-        <div key={field.id} className="flex items-center [&>div:first-child]:mr-2">
-          <Input register={register} name={`skills.${index}.name`} placeholder="Skill name" />
-          <Input register={register} name={`skills.${index}.proficiency`} placeholder="Proficiency" />
-          <div className="flex w-1/4 items-start">
-            <button
-              type="button"
-              onClick={() => remove(index)}
-              className="ml-2 border-2 border-cyan-500 px-2 text-cyan-500 hover:bg-cyan-500 hover:text-black"
-            >
+        <div key={field.id} className="flex items-center [&>div:not(:last-child)]:mr-2">
+          <Input inputProps={{ ...register(`skills.${index}.name`) }} placeholder="Skill name" />
+          <Input placeholder="Proficiency" inputProps={{ ...register(`skills.${index}.proficiency`) }} />
+          <div className="flex items-center">
+            <Button type="button" onClick={() => remove(index)}>
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       ))}

@@ -1,8 +1,8 @@
-interface ButtonProps {
+type ButtonProps = {
   onClick: () => void;
   children: string;
   type?: "submit" | "button";
-}
+};
 
 const Button = ({ onClick, children, type }: ButtonProps) => {
   return (

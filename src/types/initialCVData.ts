@@ -9,7 +9,7 @@ export interface PersonalInfoI {
 
 export interface ProjectI {
   name: string;
-  tools: string[];
+  tools: { name: string }[];
   source: string;
   demo: string;
   description: string[];

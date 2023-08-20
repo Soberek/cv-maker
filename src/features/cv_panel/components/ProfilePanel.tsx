@@ -5,20 +5,20 @@ import Textarea from "../elements/Textarea";
 import { InputsI } from "../types";
 import PanelTitle from "../elements/PanelTitle";
 
-interface ProfilePanelProps {
+type ProfilePanelProps = {
   register: UseFormRegister<InputsI>;
-}
+};
 
 const ProfilePanel = ({ register }: ProfilePanelProps) => {
   return (
     <>
       <PanelTitle>YOUR PERSONAL INFO</PanelTitle>
-      <Input register={register} label_title="Name" name="name" />
-      <Input register={register} label_title="Job title" name="job_title" />
-      <Input register={register} label_title="Email" name="email" />
-      <Input register={register} label_title="Github" name="github" />
-      <Input register={register} label_title="Phone" name="phone" />
-      <Textarea register={register} label_title="Description" name="description" />
+      <Input inputProps={{ ...register(`name`) }} label_title="Name" />
+      <Input inputProps={{ ...register(`job_title`) }} label_title="Job title" />
+      <Input inputProps={{ ...register(`email`) }} label_title="Email" />
+      <Input inputProps={{ ...register(`github`) }} label_title="Github" />
+      <Input inputProps={{ ...register(`phone`) }} label_title="Phone" />
+      <Textarea inputProps={{ ...register(`description`) }} label_title="Description" />
     </>
   );
 };
