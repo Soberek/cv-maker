@@ -9,6 +9,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { InputsI } from "../types";
 import usePanel from "../hooks/usePanel";
 import LanguagesPanel from "./LanguagesPanel";
+import ProjectsPanel from "./ProjectsPanel";
 
 type PanelProps = { cv_data: CvData; handlePreviewGeneration: (data: CvData) => void };
 
@@ -31,6 +32,7 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
       // education
       educations: cv_data.educations ? cv_data.educations : DEFAULT_EDUCATIONS_VALUE,
       // experience
+      projects: cv_data.projects ? cv_data.projects : [],
       // languages
       languages: cv_data.languages ? cv_data.languages : DEFAULT_LANGUAGES_VALUE,
       // certificates
@@ -53,6 +55,16 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
   } = useFieldArray({
     control,
     name: "educations",
+  });
+
+  const {
+    fields: projects_fields,
+    append: projectsAppend,
+    remove: projectsRemove,
+    update: projectsUpdate,
+  } = useFieldArray({
+    control,
+    name: "projects",
   });
 
   const {
@@ -90,6 +102,18 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
           fields={educations_fields}
           append={educationAppend}
           remove={educationRemove}
+        />
+      ),
+    },
+    {
+      key: "projects",
+      component: (
+        <ProjectsPanel
+          register={register}
+          fields={projects_fields}
+          append={projectsAppend}
+          remove={projectsRemove}
+          update={projectsUpdate}
         />
       ),
     },

@@ -1,5 +1,5 @@
 const WorkExperiencePanel = () => {
-  return <div>ExperiencePanel</div>;
+  return <div>Experience Panel coming soon :)</div>;
 };
 
 export default WorkExperiencePanel;

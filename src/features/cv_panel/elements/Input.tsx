@@ -10,7 +10,7 @@ const Input = ({ label_title, placeholder, inputProps }: InputProps) => {
       {label_title && <label className="mb-2 text-[1rem] text-gray-400">{label_title}</label>}
 
       <input
-        className="my-2 border-b-2 border-gray-600 bg-gray-800 pb-2 text-white outline-none focus:border-b-2 focus:border-cyan-500"
+        className="border-b-2 border-gray-600 bg-gray-800 pb-2 text-white outline-none focus:border-b-2 focus:border-cyan-500"
         placeholder={placeholder}
         {...inputProps}
       />

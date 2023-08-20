@@ -53,9 +53,17 @@ export const initialCVData: CvData = {
   projects: [
     {
       name: "CVMaker (in progress)",
-      tools: ["Typescript", "React", "react-hook-form", "react-pdf/renderer", "Git", "CI/CD"],
+      tools: [
+        { name: "Typescript" },
+        { name: "React" },
+        { name: "react-hook-form" },
+        { name: "tailwindcss" },
+        { name: "react-pdf/renderer" },
+        { name: "Git" },
+        { name: "CI/CD" },
+      ],
       source: "https://github.com/Soberek/cv-maker",
-      demo: "https://cvmakerproject.netlify.app/",
+      demo: "https://main--cvmakerproject.netlify.app/",
       description: [
         "Developed a CV maker project utilizing TypeScript and React,",
         "Implemented the capability to generate a CV preview by utilizing provided data,",

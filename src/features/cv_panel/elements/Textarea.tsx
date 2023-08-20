@@ -16,7 +16,7 @@ const TextArea = ({ inputProps, label_title, placeholder, className }: TextareaP
         {...inputProps}
         placeholder={placeholder}
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        className={`mb-2 border-b-2 border-gray-600 bg-gray-800 pb-2 text-white outline-none focus:border-b-2 focus:border-cyan-500 ${className}`}
+        className={`border-b-2 border-gray-600 bg-gray-800 pb-2 text-white outline-none focus:border-b-2 focus:border-cyan-500 ${className}`}
       />
     </div>
   );
