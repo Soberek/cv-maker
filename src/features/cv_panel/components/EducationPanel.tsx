@@ -16,7 +16,7 @@ const EducationPanel = ({ fields, register, append, remove }: EducationPanelProp
     <>
       <PanelTitle>YOUR EDUCATIONAL BACKGROUND</PanelTitle>
       {fields.map((field, index) => (
-        <div key={field.id} className="flex flex-col border-t-4 border-cyan-500 pt-4">
+        <div key={field.id} className="flex flex-col border-t-4 border-cyan-500 pt-4 [&>*>input]:mb-2">
           <Input
             label_title="School name"
             placeholder="University of Oxford"

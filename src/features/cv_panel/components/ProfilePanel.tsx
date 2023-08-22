@@ -18,7 +18,7 @@ const ProfilePanel = ({ register }: ProfilePanelProps) => {
       <Input inputProps={{ ...register(`email`) }} label_title="Email" />
       <Input inputProps={{ ...register(`github`) }} label_title="Github" />
       <Input inputProps={{ ...register(`phone`) }} label_title="Phone" />
-      <Textarea inputProps={{ ...register(`description`) }} label_title="Description" />
+      <Textarea inputProps={{ ...register(`description`) }} label_title="Description" className="min-h-[100px]" />
     </>
   );
 };

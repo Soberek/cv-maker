@@ -10,6 +10,7 @@ function App() {
   // get here data from panel and send them to cv_preview component
 
   const generatePreview = (new_cv_data: CvData) => {
+    console.log(new_cv_data);
     setData(new_cv_data);
   };
 
@@ -19,7 +20,7 @@ function App() {
         <Panel cv_data={data} handlePreviewGeneration={generatePreview} />
       </div>
 
-      <div className="md:w-1/2">
+      <div className=" md:block md:w-1/2">
         <Preview cv_data={data} />
       </div>
     </div>

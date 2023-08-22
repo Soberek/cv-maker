@@ -137,10 +137,10 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
   const panel_to_display = panels.find((panel) => panel.key === active_panel)?.component;
 
   return (
-    <div className="flex h-screen py-6 text-white">
+    <div className="flex h-screen text-white">
       {/* Section list */}
-      <div className="w-1/3 border-r-2 p-6">
-        <ul className="flex flex-col gap-4 text-xs [&>*]:px-1 [&>*]:py-2">
+      <div className="w-1/3 border-r-2">
+        <ul className="mx-auto mt-6 flex flex-col text-xs md:w-1/2 [&>*:not(:last-child)]:mb-4 [&>*]:px-1 [&>*]:py-2">
           {panels.map((panel) => (
             <li
               key={panel.key}
@@ -187,7 +187,7 @@ export const Panel = ({ cv_data, handlePreviewGeneration }: PanelProps) => {
       </div>
 
       {/* Section details */}
-      <div className="mr-2 flex-1 overflow-y-auto p-6 text-sm">
+      <div className="mr-2 mt-6 flex-1 overflow-y-auto px-4 text-sm">
         {/* One big Form */}
         <form className="[&>*]:mb-2">{panel_to_display}</form>
       </div>

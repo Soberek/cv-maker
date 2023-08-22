@@ -8,9 +8,11 @@ type TextareaProps = {
 const TextArea = ({ inputProps, label_title, placeholder, className }: TextareaProps) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor={``} className="mb-2 text-[1rem] text-gray-400">
-        {label_title}
-      </label>
+      {label_title && (
+        <label htmlFor={inputProps.name} className="mb-2 text-[1rem] text-gray-400">
+          {label_title}
+        </label>
+      )}
 
       <textarea
         {...inputProps}
